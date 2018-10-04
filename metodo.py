@@ -37,4 +37,3 @@ def transformacionLista(mi,mf,puntos):
     return npuntos
 
 
-

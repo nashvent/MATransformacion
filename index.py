@@ -2,9 +2,17 @@ from PyQt5.QtWidgets import  QWidget, QFileDialog,QMessageBox,QMainWindow, QAppl
 from PyQt5 import uic
 import sys
 import metodo as mt
-from numpy import *
+import numpy as np
 import matplotlib.pyplot as plt
 plt.style.use('seaborn-whitegrid')
+
+def matrixToGraph(mtrx):
+    x = [0]
+    y = [0]
+    for i in range(len(mtrx)):
+        x.append(mtrx[i][0])
+        y.append(mtrx[i][1])
+    return x,y
 
 
 def tableToVector(tabla):
@@ -41,10 +49,17 @@ class inicio(QMainWindow):
         resp=mt.transformacion(mv,mw,punto)
         vectorToTable(resp,self.tableWidgetRpta)
 
-    def graficar(self):
-        x = [0, 1, 1]
-        y = [0, 1, 0]
-
+    def graficar(self):    
+        mv=tableToMatrix(self.tableWidgetV)
+        x,y=matrixToGraph(mv)
+        plt.subplot(2, 1, 1)
+        plt.plot(x, y)
+        
+        mw=tableToMatrix(self.tableWidgetW)
+        mIdentidad=[[1,0],[0,1]]
+        mTran=mt.transformacionLista(mv,mw,mw)
+        x,y=matrixToGraph(mTran)
+        plt.subplot(2, 1, 2)
         plt.plot(x, y)
         plt.show()
 
