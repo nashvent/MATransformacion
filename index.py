@@ -6,7 +6,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 plt.style.use('seaborn-whitegrid')
 # holaaaaa
-matrixTrans=[]
+
 def matrixToGraph(mtrx):
     x = [0]
     y = [0]
@@ -61,8 +61,7 @@ class inicio(QMainWindow):
         mIdentidad=tableToMatrix(self.tableWidgetCA)
         mTran=mt.transformacionLista(mv,mw,mIdentidad)
         MatrixToTable(mTran,self.tableWidgetMR)
-        matrixTrans=mTran
-        return matrixTrans
+        return mTran
 
 
     def graficar(self):    
@@ -70,7 +69,12 @@ class inicio(QMainWindow):
         x,y=matrixToGraph(mv)
         plt.subplot(2, 1, 1)
         plt.plot(x, y)
+        """x,y=mt.graph("sqrt(1-pow(x,2))",-1,1)
+        plt.plot(x, y)
+        x,y=mt.graph("-sqrt(1-pow(x,2))",-1,1)
+        plt.plot(x, y)"""
         
+
         mw=tableToMatrix(self.tableWidgetW)
         mtxT=self.calc()
         mTran=mt.multMatrizVector(mv,mtxT)

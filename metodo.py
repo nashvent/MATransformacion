@@ -1,5 +1,6 @@
 import numpy
-
+import matplotlib.pyplot as plt
+from math import *
 
 def inversa(ma):
     return numpy.linalg.inv(ma)
@@ -37,4 +38,16 @@ def transformacionLista(mi,mf,puntos):
         npuntos.append(transformacion(mi,mf,puntos[i]))
     return npuntos
 
+
+def parseMathY(formula,xR):
+    y=[]
+    for x in xR:
+        y.append(eval(formula)) 
+    return y
+def graph(formula,i,f):
+    x = numpy.linspace(i,f,100)
+    y = parseMathY(formula,x)
+    #plt.plot(x, y)   # `r--` for dashed red line
+    #plt.show()
+    return x,y
 
