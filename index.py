@@ -5,7 +5,7 @@ import metodo as mt
 import numpy as np
 import matplotlib.pyplot as plt
 plt.style.use('seaborn-whitegrid')
-
+# holaaaaa
 def matrixToGraph(mtrx):
     x = [0]
     y = [0]
