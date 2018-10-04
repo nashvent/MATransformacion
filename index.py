@@ -12,6 +12,9 @@ def matrixToGraph(mtrx):
     for i in range(len(mtrx)):
         x.append(mtrx[i][0])
         y.append(mtrx[i][1])
+
+    x.append(0)
+    y.append(0)
     return x,y
 
 
