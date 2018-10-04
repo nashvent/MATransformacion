@@ -9,9 +9,10 @@ def multMatrizVector(matrix,vect):
 
 
 def multEscalVector(escal,vect):
+    vect2=[]
     for i in range(len(vect)):
-        vect[i]=escal*vect[i]
-    return vect
+        vect2.append(escal*vect[i])
+    return vect2
 
 def sumaVector(va,vb):
     vc=[]

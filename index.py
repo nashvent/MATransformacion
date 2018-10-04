@@ -6,6 +6,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 plt.style.use('seaborn-whitegrid')
 # holaaaaa
+matrixTrans=[]
 def matrixToGraph(mtrx):
     x = [0]
     y = [0]
@@ -36,7 +37,12 @@ def vectorToTable(vect,tabla):
     for j in range(tabla.columnCount()):
         tabla.setItem(0,j,QTableWidgetItem(str(vect[j])))
     
-
+def MatrixToTable(matrix,tableView):
+    tableView.setRowCount(len(matrix))
+    tableView.setColumnCount(len(matrix[0]))
+    for i,row in enumerate(matrix):
+        for j,val in enumerate(row):
+            tableView.setItem(i,j,QTableWidgetItem(str(val)))
 
 class inicio(QMainWindow):            
     def __init__(self):
@@ -52,6 +58,13 @@ class inicio(QMainWindow):
         resp=mt.transformacion(mv,mw,punto)
         vectorToTable(resp,self.tableWidgetRpta)
 
+        mIdentidad=tableToMatrix(self.tableWidgetCA)
+        mTran=mt.transformacionLista(mv,mw,mIdentidad)
+        MatrixToTable(mTran,self.tableWidgetMR)
+        matrixTrans=mTran
+        return matrixTrans
+
+
     def graficar(self):    
         mv=tableToMatrix(self.tableWidgetV)
         x,y=matrixToGraph(mv)
@@ -59,13 +72,14 @@ class inicio(QMainWindow):
         plt.plot(x, y)
         
         mw=tableToMatrix(self.tableWidgetW)
-        mIdentidad=[[1,0],[0,1]]
-        mTran=mt.transformacionLista(mv,mw,mw)
+        mtxT=self.calc()
+        mTran=mt.multMatrizVector(mv,mtxT)
         x,y=matrixToGraph(mTran)
         plt.subplot(2, 1, 2)
         plt.plot(x, y)
         plt.show()
 
+      
         
 app = QApplication(sys.argv)
 
